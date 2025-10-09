@@ -137,9 +137,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           const data = await res.json();
 
           if (res.ok && data.success) {
+            alert(data.message)
             showToast(data.message || "Plan purchased successfully!", "success");
           } else {
             showToast(data.message || "Purchase failed.", "error");
+            alert(data.message)
           }
         } catch (error) {
           console.error("Error purchasing plan:", error);

@@ -43,7 +43,7 @@ document
       if (response.ok && data.success) {
         const toast = document.getElementById("toast");
         button.textContent = "success ✅"
-        toast.textContent = "Logged in successfully 🎉";
+        toast.textContent = "Logged in successfully ";
          toast.style.background = "linear-gradient(135deg, #4CAF50, #2e7d32)";
         toast.classList.add("show");
         document.getElementById("loginForm").reset();

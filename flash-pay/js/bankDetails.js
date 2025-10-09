@@ -18,7 +18,7 @@ if(userAccountName && userAccountNumber && userBankName){
       userAccountName.textContent = detail.accountName;
       userAccountNumber.textContent = detail.accountNumber;
       userBankName.textContent = detail.bankName
-      if(detail.bankName === undefined){
+      if(!detail.bankName){
         document.getElementById("bankDetailsDiv").classList.add("hidden")
       }
     }else{

@@ -66,7 +66,7 @@ document
       const data = await response.json();
       if (response.ok && data.success) {
         document.getElementById("signupForm").reset();
-         toast.textContent = "Signed in successfully 🎉";
+         toast.textContent = "Signed in successfully";
          toast.style.background = "linear-gradient(135deg, #4CAF50, #2e7d32)";
         toast.classList.add("show");
            setTimeout(() => {

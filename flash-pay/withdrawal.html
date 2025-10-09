@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Withdraw</title>
+    <link rel="stylesheet" href="./dist/output.css">
+  
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        min-height: 100vh;
+        padding-bottom: 80px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+      }
+
+      /* Remove arrows in Chrome, Safari, Edge, Opera */
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Remove arrows in Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      @media (min-width: 768px) {
+        body {
+          padding-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="lg:p-8 font-poppins">
+    <div class="space-y-8 max-w-4xl mx-auto">
+      <div id="header" class="sticky top-0 z-[1000]">
+         <header class="w-full max-w-4xl">
+      <div
+        class="flex items-center justify-between bg-white shadow-lg lg:rounded-xl p-4 md:p-5 sticky top-2"
+      >
+        <div class="header-avatar text-white font-bold text-lg">U</div>
+
+        <div class="flex-1 ml-4">
+          <p id="greeting-text" class="text-gray-500 text-sm">Good Day,</p>
+          <div class="flex space-x-2 items-center">
+            <h1 id="username" class="text-gray-800 font-semibold">user</h1>
+            <p class="h-3 w-3 bg-green-300 rounded-full"></p>
+          </div>
+        </div>
+      </div>
+    </header>
+      </div>
+      <div class="px-4 lg:px-0">
+        <div class="main-content">
+          <div
+            class="max-w-lg mx-auto bg-white rounded-xl shadow-lg card p-6 space-y-6 my-8"
+          >
+            <h2
+              class="text-2xl font-bold text-gray-800 mb-2 flex items-center justify-center"
+            >
+              <i class="fas fa-wallet text-primary-500 mr-2"></i> Withdraw Funds
+            </h2>
+            <p class="text-gray-600 text-sm text-center">
+              Select your wallet and enter the amount you wish to withdraw.
+            </p>
+            <form id="withdrawForm" class="space-y-4">
+              <div>
+                <label class="block text-gray-700 font-medium mb-1"
+                  >Select Wallet (Optional)</label
+                >
+                <select
+                  class="w-full border border-gray-300 rounded-lg px-1 py-3 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                >
+                  <option value="">-- Choose Wallet --</option>
+                  <option value="welfare">welfare</option>
+                  <option value="recharge">investment</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-gray-700 font-medium mb-1"
+                  >Amount (₦)</label
+                >
+                <input
+                  type="number"
+                  placeholder="Enter amount to withdraw"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                />
+                <p
+                  id="amountError"
+                  class="text-red-400 mr-2 text-sm text-center hidden"
+                >
+                  amount is required!
+                </p>
+              </div>
+
+              <button
+                class="btn-primary w-full text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center"
+                id="withdrawBtn"
+                type="submit"
+              >
+                <span>Proceed</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        id="footer"
+        class="fixed w-full md:sticky bottom-0 z-[1000]"
+      ></div>
+    </div>
+    <script src="./js/app.js"></script>
+    <script src="./js/withdrawal.js"></script>
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

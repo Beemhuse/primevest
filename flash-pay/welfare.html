@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Welfare</title>
+     <link rel="stylesheet" href="./dist/output.css">
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        min-height: 100vh;
+        padding-bottom: 80px;
+      }
+
+      .welfare-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .welfare-card:hover {
+        box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15);
+        transform: translateY(-5px);
+      }
+
+      .welfare-header {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+        color: white;
+        padding: 16px;
+        text-align: center;
+      }
+
+      .welfare-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0ea5e9;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+      }
+
+      @media (min-width: 768px) {
+        body {
+          padding-bottom: 0;
+        }
+      }
+           .animate-shimmer {
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+    </style>
+  </head>
+  <body class="font-poppins">
+    <div class="lg:p-4 space-y-8 max-w-4xl mx-auto">
+      <div id="header" class="sticky top-0 z-[1000]">
+         <header class="w-full max-w-4xl">
+      <div
+        class="flex items-center justify-between bg-white shadow-lg lg:rounded-xl p-4 md:p-5 sticky top-2"
+      >
+        <div class="header-avatar text-white font-bold text-lg">U</div>
+
+        <div class="flex-1 ml-4">
+          <p id="greeting-text" class="text-gray-500 text-sm">Good Day,</p>
+          <div class="flex space-x-2 items-center">
+            <h1 id="username" class="text-gray-800 font-semibold">user</h1>
+            <p class="h-3 w-3 bg-green-300 rounded-full"></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="toast" class="toast"></div>
+      </div>
+      <div class="px-4 lg:px-0">
+      <div id="welfareplanscontainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+    <div
+            id="planShimmers"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 opacity-100 transition-opacity duration-700 animate-pulse"
+          >
+            <!-- One shimmer card -->
+            <div
+              class="flex flex-col bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
+            >
+              <div class="p-4 space-y-3">
+                <div
+                  class="h-5 w-1/2 bg-gray-300 rounded animate-shimmer"
+                ></div>
+                <div
+                  class="h-3 w-3/4 bg-gray-200 rounded animate-shimmer"
+                ></div>
+              </div>
+
+              <div class="p-6 flex-grow space-y-5">
+                <div
+                  class="h-7 w-1/3 bg-gray-300 rounded mx-auto animate-shimmer"
+                ></div>
+                <div
+                  class="h-3 w-1/2 bg-gray-200 rounded mx-auto animate-shimmer"
+                ></div>
+
+                <div class="space-y-3 mt-6">
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 border-t border-gray-100">
+                <div
+                  class="h-10 w-full bg-gray-300 rounded-lg animate-shimmer"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Duplicate shimmer 3x -->
+            <div
+              class="flex flex-col bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
+            >
+              <div class="p-4 space-y-3">
+                <div
+                  class="h-5 w-1/2 bg-gray-300 rounded animate-shimmer"
+                ></div>
+                <div
+                  class="h-3 w-3/4 bg-gray-200 rounded animate-shimmer"
+                ></div>
+              </div>
+              <div class="p-6 flex-grow space-y-5">
+                <div
+                  class="h-7 w-1/3 bg-gray-300 rounded mx-auto animate-shimmer"
+                ></div>
+                <div
+                  class="h-3 w-1/2 bg-gray-200 rounded mx-auto animate-shimmer"
+                ></div>
+                <div class="space-y-3 mt-6">
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 border-t border-gray-100">
+                <div
+                  class="h-10 w-full bg-gray-300 rounded-lg animate-shimmer"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="flex flex-col bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
+            >
+              <div class="p-4 space-y-3">
+                <div
+                  class="h-5 w-1/2 bg-gray-300 rounded animate-shimmer"
+                ></div>
+                <div
+                  class="h-3 w-3/4 bg-gray-200 rounded animate-shimmer"
+                ></div>
+              </div>
+              <div class="p-6 flex-grow space-y-5">
+                <div
+                  class="h-7 w-1/3 bg-gray-300 rounded mx-auto animate-shimmer"
+                ></div>
+                <div
+                  class="h-3 w-1/2 bg-gray-200 rounded mx-auto animate-shimmer"
+                ></div>
+                <div class="space-y-3 mt-6">
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div
+                      class="h-3 w-1/3 bg-gray-200 rounded animate-shimmer"
+                    ></div>
+                    <div
+                      class="h-3 w-1/4 bg-gray-300 rounded animate-shimmer"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 border-t border-gray-100">
+                <div
+                  class="h-10 w-full bg-gray-300 rounded-lg animate-shimmer"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div
+        id="footer"
+        class="fixed w-full md:sticky bottom-0 z-[1000]"
+      ></div>
+    </div>
+<script src="./js/app.js"></script>
+<script src="./js/welfare.js"></script>
+    <script>
+
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

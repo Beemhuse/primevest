@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Recharge</title>
+     <link rel="stylesheet" href="./dist/output.css">
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        min-height: 100vh;
+        padding-bottom: 80px;
+      }
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .note {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+      }
+      /* Remove arrows in Chrome, Safari, Edge, Opera */
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Remove arrows in Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      .bank-info {
+        background: linear-gradient(135deg, #0c4a6e 0%, #134e4a 100%);
+        color: white;
+      }
+
+      .copy-btn {
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        transform: scale(1.05);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .copied-message {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .copied-message.show {
+        opacity: 1;
+      }
+
+      @media (min-width: 768px) {
+        body {
+          padding-bottom: 0;
+        }
+      }
+     #toast {
+      background-color: linear-gradient(135deg, #4CAF50, #2e7d32);
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#toast.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+    </style>
+  </head>
+
+  <body class="md:pt-2 font-poppins border-3">
+    <div class="lg:p-4 space-y-8 max-w-4xl mx-auto">
+      <div id="header" class="sticky top-0 z-[1000]"></div>
+      <div class="px-4 lg:px-0">
+        <div class="bank-info rounded-xl shadow-lg mb-6 p-6 space-y-4">
+          <h2 class="text-xl font-bold text-dark mb-4 flex items-center">
+            <i class="fas fa-university mr-2"></i> Bank Account Details
+          </h2>
+
+          <div class="bank-info bg-opacity-10 p-4 rounded-lg">
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <p class="text-sm text-gray-300">Bank Name</p>
+                <p class="font-semibold">Access Bank</p>
+              </div>
+              <button
+                class="copy-btn bg-dark bg-opacity-20 p-2 rounded-lg"
+                onclick="copyToClipboard('Access Bank', 'bank')"
+              >
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="flex justify-between items-center mb-4">
+              <div>
+                <p class="text-sm text-gray-300">Account Name</p>
+                <p class="font-semibold">John Chinedu</p>
+              </div>
+              <button
+                class="copy-btn bg-dark bg-opacity-20 p-2 rounded-lg"
+                onclick="copyToClipboard('John Chinedu', 'account')"
+              >
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-sm text-gray-300">Account Number</p>
+                <p class="font-semibold">0034567890</p>
+              </div>
+              <button
+                class="copy-btn bg-dark bg-opacity-20 p-2 rounded-lg"
+                onclick="copyToClipboard('0034567890', 'number')"
+              >
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="copiedMessage"
+            class="copied-message text-center text-sm bg-teal-500 bg-opacity-30 p-2 rounded-lg mt-2"
+          >
+            <i class="fas fa-check-circle mr-1"></i>
+            <span id="copiedText"></span> copied to clipboard!
+          </div>
+        </div>
+      </div>
+      <div class="px-4 lg:px-0">
+        <div class="bg-white rounded-xl shadow-lg card p-6 space-y-6 mb-16">
+          <h2 class="text-2xl font-bold text-gray-800 mb-2 flex items-center">
+            <i class="fas fa-bolt text-primary-500 mr-2"></i> Recharge Wallet
+          </h2>
+          <p class="text-gray-600 text-sm">
+            Please fill in the details below to complete your recharge.
+          </p>
+          <p class="note p-2 text-white text-sm font-semibold rounded-lg">
+            Note: Minimum Deposit is 3000
+          </p>
+        <form id="depositForm" enctype="multipart/form-data">
+  <div>
+    <label class="block text-gray-700 font-medium mb-1">Deposit Amount (₦)</label>
+    <input
+      type="number"
+      id="amount"
+      name="amount"
+      placeholder="Enter amount to deposit"
+      min="3000"
+      required
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+    />
+  </div>
+
+  <div>
+    <label class="block text-gray-700 font-medium mb-1">Sender Name</label>
+    <input
+      type="text"
+      id="senderName"
+      name="senderName"
+      placeholder="Enter sender name"
+      required
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+    />
+  </div>
+
+  <div>
+    <label class="block text-gray-700 font-medium mb-1">Balance Type</label>
+    <select
+      id="balanceType"
+      name="balanceType"
+      required
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+    >
+      <option value="investment">Investment</option>
+      <option value="welfare">Welfare</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block text-gray-700 font-medium mb-1">Proof of Payment</label>
+    <input
+      type="file"
+      id="proofFile"
+      name="proofOfPayment"
+      accept="image/*"
+      required
+      class="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-600 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-primary-500 focus:outline-none"
+    />
+    <p class="text-xs text-gray-500 mt-1">Upload screenshot of your payment</p>
+  </div>
+
+  <button
+    id="depositBtn"
+    type="submit"
+    class="btn-primary w-full text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center"
+  >
+    <span>Submit to Recharge</span>
+    <i class="fas fa-arrow-right ml-2"></i>
+  </button>
+</form>
+        </div>
+      </div>
+      <div id="toast"></div>
+      <div
+        id="footer"
+        class="fixed w-full md:sticky bottom-0 z-[1000]"
+      ></div>
+    </div>
+    <script src="./js/deposit.js"></script>
+    <script>
+  
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.0/dist/browser-image-compression.js"></script>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

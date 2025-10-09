@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="./dist/output.css" />
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        min-height: 100vh;
+        padding-bottom: 80px;
+      }
+
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status-pending {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+      .status-success {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+      .status-failed {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+    </style>
+  </head>
+
+  <body class="font-poppins text-gray-800">
+    <div class="max-w-4xl mx-auto lg:p-4 px-2 sm:px-4">
+      <!-- Header -->
+      <div id="header" class="sticky top-0 z-[1000]">
+        <header class="w-full max-w-4xl">
+          <div
+            class="flex items-center justify-between bg-white shadow-lg rounded-xl p-4 md:p-5 mt-2"
+          >
+            <div
+              class="header-avatar bg-blue-500 text-white font-bold text-lg flex items-center justify-center h-10 w-10 rounded-full"
+            >
+              U
+            </div>
+
+            <div class="flex-1 ml-4">
+              <p id="greeting-text" class="text-gray-500 text-sm">
+                Good Day,
+              </p>
+              <div class="flex space-x-2 items-center">
+                <h1 id="username" class="text-gray-800 font-semibold text-base sm:text-lg">
+                  user
+                </h1>
+                <p class="h-3 w-3 bg-green-300 rounded-full"></p>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <!-- Stats -->
+      <div class="px-2 lg:px-0 mt-6 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <!-- Pending -->
+          <div class="bg-white rounded-lg shadow p-4 card flex items-center">
+            <div class="rounded-full bg-blue-100 p-3 mr-4">
+              <i class="fas fa-clock text-blue-600"></i>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm">Pending</p>
+              <p class="text-2xl font-bold" id="pendingCount">0</p>
+            </div>
+          </div>
+
+          <!-- Completed -->
+          <div class="bg-white rounded-lg shadow p-4 card flex items-center">
+            <div class="rounded-full bg-green-100 p-3 mr-4">
+              <i class="fas fa-check-circle text-green-600"></i>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm">Completed</p>
+              <p class="text-2xl font-bold" id="completedCount">0</p>
+            </div>
+          </div>
+
+          <!-- Failed -->
+          <div class="bg-white rounded-lg shadow p-4 card flex items-center">
+            <div class="rounded-full bg-red-100 p-3 mr-4">
+              <i class="fas fa-times-circle text-red-600"></i>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm">Failed</p>
+              <p class="text-2xl font-bold" id="failedCount">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Withdrawals -->
+      <div class="bg-white rounded-xl shadow-lg card overflow-hidden mb-4">
+        <div
+          class="p-4 sm:p-6 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2"
+        >
+          <h3 class="text-lg font-semibold text-gray-800">
+            Recent Withdrawals
+          </h3>
+        </div>
+
+        <div class="p-4 sm:p-6 space-y-4" id="withdrawals">
+          <!-- JS Injected Content -->
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div id="footer" class="fixed md:sticky bottom-0 w-full z-[1000]"></div>
+    </div>
+
+    <script src="./js/app.js"></script>
+    <script src="./js/history.js"></script>
+  </body>
+</html>

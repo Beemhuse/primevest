@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Dashboard Footer</title>
+     <link rel="stylesheet" href="./dist/output.css">
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        min-height: 100vh;
+      }
+
+      .footer-icon-container {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0d9488 100%);
+        border-radius: 12px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .footer-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .footer-item:hover .footer-icon-container {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+      }
+
+      .footer-item:hover p {
+        color: #0ea5e9;
+      }
+    </style>
+  </head>
+
+  <body class="flex items-center justify-center min-h-screen font-poppins">
+    <footer class="w-full max-w-4xl">
+      <div
+        class="flex bg-white justify-between items-center shadow-lg w-full rounded-xl py-4 px-6"
+      >
+        <a href="dashboard.html" class="footer-item">
+          <div class="footer-icon-container">
+            <i class="fas fa-home text-white text-sm"></i>
+          </div>
+          <p class="text-xs font-medium text-gray-700 mt-1">Home</p>
+        </a>
+          <a href="./plans.html" class="footer-item">
+          <div class="footer-icon-container">
+            <i class="fas fa-dollar text-white text-sm"></i>
+          </div>
+          <p class="text-xs font-medium text-gray-700 mt-1">Plans</p>
+        </a>
+
+        <a href="https://wa.me/message/JHIUM4UB36FBK1" class="footer-item">
+          <div class="footer-icon-container">
+            <i class="fas fa-headset text-white text-sm"></i>
+          </div>
+          <p class="text-xs font-medium text-gray-700 mt-1">Support</p>
+        </a>
+
+        <a href="withdrawal.html" class="footer-item">
+          <div class="footer-icon-container">
+            <i class="fas fa-hand-holding-usd text-white text-sm"></i>
+          </div>
+          <p class="text-xs font-medium text-gray-700 mt-1">Cashout</p>
+        </a>
+
+        <button id="logoutBtn" class="footer-item">
+            <div class="footer-icon-container">
+            <i class="fas fa-sign-out-alt text-white text-sm"></i>
+          </div>
+          <p class="text-xs font-medium text-gray-700 mt-1">Logout</p>
+      
+        </button>
+        
+      </div>
+    </footer>
+    <script src="./js/app.js"></script>
+    <script>
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  const originalHTML = logoutBtn.innerHTML;
+
+  // Disable button while processing
+  logoutBtn.disabled = true;
+  logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
+
+  try {
+    const res = await fetch("https://prime-invest-server.onrender.com/api/logout", {
+      method: "POST",
+      credentials: "include", // important if using cookies/session
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      // ✅ Logout successful
+      showToast("✅ Logged out successfully!", "success");
+
+      // Optional: clear local storage or session storage
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // Redirect to login page after short delay
+      setTimeout(() => {
+        window.location.href = "/login.html";
+      }, 1500);
+    } else {
+      // ❌ Error
+      showToast(data.message || "Logout failed. Try again.", "error");
+      logoutBtn.disabled = false;
+      logoutBtn.innerHTML = originalHTML;
+    }
+  } catch (err) {
+    console.error("Logout error:", err);
+    showToast("⚠️ Network error. Try again.", "error");
+    logoutBtn.disabled = false;
+    logoutBtn.innerHTML = originalHTML;
+  }
+});
+    </script>
+  </body>
+</html>

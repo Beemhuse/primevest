@@ -18,7 +18,6 @@ if(userAccountName && userAccountNumber && userBankName){
       userAccountName.textContent = detail.accountName;
       userAccountNumber.textContent = detail.accountNumber;
       userBankName.textContent = detail.bankName
-      document.getElementById("bankDetailsDiv").classList.remove("hidden")
       if(!detail.bankName){
         document.getElementById("bankDetailsDiv").classList.add("hidden");
         document.getElementById("bankDetails").classList.remove("hidden");

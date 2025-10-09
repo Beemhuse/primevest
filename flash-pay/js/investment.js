@@ -139,15 +139,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           if (res.ok && data.success) {
             showToast(data.message || "Plan purchased successfully!", "success");
-            alert(data.message)
+            alert(data.message);
           } else {
             showToast(data.message || "Purchase failed.", "error");
-            alert(data.message)
+            alert(data.message);
           }
         } catch (error) {
           console.error("Error purchasing plan:", error);
           showToast("Network error. Please try again.", "error");
-          alert(data.message)
         } finally {
           btn.disabled = false;
           btn.innerHTML = originalText;

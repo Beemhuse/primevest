@@ -19,10 +19,12 @@ if(userAccountName && userAccountNumber && userBankName){
       userAccountNumber.textContent = detail.accountNumber;
       userBankName.textContent = detail.bankName
       if(!detail.bankName){
-        document.getElementById("bankDetailsDiv").classList.add("hidden")
+        document.getElementById("bankDetailsDiv").classList.add("hidden");
+        document.getElementById("bankDetails").classList.remove("hidden");
       }
     }else{
-      document.getElementById("bankDetails").classList.remove("hidden")
+      document.getElementById("bankDetails").classList.remove("hidden");
+      document.getElementById("bankDetails").classList.add("hidden");
       
     }
   }catch (error) {

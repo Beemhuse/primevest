@@ -51,7 +51,7 @@ async function updatePage() {
       const user = data.data;
       const referralCode = user.referralCode;
      if (document.getElementById("referralLink")){
-        document.getElementById("referralLink").value = `https://primeevest.com/index.html?ref=${referralCode}`;
+        document.getElementById("referralLink").value = `https://primeevest.com?ref=${referralCode}`;
      }
 
       const hour = new Date().getHours();

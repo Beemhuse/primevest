@@ -23,7 +23,7 @@ if(userAccountName && userAccountNumber && userBankName){
         document.getElementById("bankDetails").classList.remove("hidden");
       }
     }else{
-      document.getElementById("bankDetails").classList.remove("hidden");
+      document.getElementById("bankDetailsDiv").classList.remove("hidden");
       document.getElementById("bankDetails").classList.add("hidden");
       
     }

@@ -2,7 +2,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 const userAccountName = document.getElementById('useraccountName')
 const userAccountNumber = document.getElementById("useraccountNumber")
 const userBankName = document.getElementById('userbankName')
-document.getElementById("bankDetailsDiv").classList.remove("hidden");
 if(userAccountName && userAccountNumber && userBankName){
   try{
     const response = await fetch("https://prime-invest-server.onrender.com/api/users/bank-details",{
@@ -18,7 +17,7 @@ if(userAccountName && userAccountNumber && userBankName){
       userAccountName.textContent = detail.accountName;
       userAccountNumber.textContent = detail.accountNumber;
       userBankName.textContent = detail.bankName
-      document.getElementById("bankDetailsDiv").classList.remove("hidden");
+      if (detail.bankName){document.getElementById("bankDetailsDiv").classList.remove("hidden");};
       if(!detail.bankName){
         document.getElementById("bankDetailsDiv").classList.add("hidden");
         document.getElementById("bankDetails").classList.remove("hidden");

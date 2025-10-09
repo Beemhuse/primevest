@@ -18,9 +18,12 @@ if(userAccountName && userAccountNumber && userBankName){
       userAccountName.textContent = detail.accountName;
       userAccountNumber.textContent = detail.accountNumber;
       userBankName.textContent = detail.bankName
+      if(detail.bankName === undefined){
+        document.getElementById("bankDetailsDiv").classList.add("hidden")
+      }
     }else{
       document.getElementById("bankDetails").classList.remove("hidden")
-      document.getElementById("bankDetailsDiv").classList.add("hidden")
+      
     }
   }catch (error) {
     console.error("Error fetching user:", error);

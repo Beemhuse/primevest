@@ -86,4 +86,107 @@ async function loadWithdrawals() {
   }
 }
 
+const API_BASE_URL = "https://prime-invest-server.onrender.com/api";
+const depositContainer = document.getElementById("depositHistoryContainer");
+
+// === FETCH AND DISPLAY USER DEPOSITS ===
+async function getUserDeposits() {
+  depositContainer.innerHTML = `
+    <p class="text-gray-500 text-center py-6">Loading deposits...</p>
+  `;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/deposits`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+
+    const data = await response.json();
+
+    // If request failed or malformed
+    if (!data.success || !Array.isArray(data.data)) {
+      depositContainer.innerHTML = `
+        <p class="text-gray-500 text-center py-6">No deposit records found.</p>
+      `;
+      return;
+    }
+
+    // Empty state
+    if (data.data.length === 0) {
+      depositContainer.innerHTML = `
+        <p class="text-gray-500 text-center py-6">You have not made any deposits yet.</p>
+      `;
+      return;
+    }
+
+    // Clear container
+    depositContainer.innerHTML = "";
+
+    // Loop through each deposit
+    data.data.forEach((deposit) => {
+      const card = document.createElement("div");
+      card.className =
+        "w-full flex flex-col border-b border-gray-300 p-4 hover:bg-gray-50 transition-all duration-300 rounded-md";
+
+      card.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <p class="text-gray-800 font-medium">${deposit.senderName || "Unknown Sender"}</p>
+          </div>
+
+          <p class="text-gray-700 font-semibold">₦${deposit.amount?.toLocaleString() || 0}</p>
+
+          <p class="text-gray-600 capitalize">${deposit.balanceType || "main"}</p>
+
+          <span class="px-2 py-1 text-xs rounded-full w-fit inline-flex justify-center ${
+            deposit.status === "successful"
+              ? "bg-green-100 text-green-700"
+              : deposit.status === "pending"
+              ? "bg-yellow-100 text-yellow-700"
+              : "bg-gray-100 text-gray-600"
+          }">${deposit.status}</span>
+        </div>
+
+        <div class="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500">
+          <p>Funded on: ${formatDate(deposit.fundedAt)}</p>
+          ${
+            deposit.proofOfPayment?.asset?.url
+              ? `<a href="${deposit.proofOfPayment.asset.url}" target="_blank" class="text-blue-600 hover:underline mt-1 sm:mt-0">View Proof</a>`
+              : ""
+          }
+        </div>
+
+        <div class="mt-1 text-xs text-gray-400">
+          Deposit ID: ${deposit._id}
+        </div>
+      `;
+
+      depositContainer.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching deposits:", error);
+    depositContainer.innerHTML = `
+      <p class="text-red-500 text-center py-6">Failed to load deposits. Please try again.</p>
+    `;
+  }
+}
+
+// === HELPER: FORMAT DATE ===
+function formatDate(dateStr) {
+  if (!dateStr) return "N/A";
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+// === INITIAL LOAD ===
+getUserDeposits();
+
+
 loadWithdrawals();

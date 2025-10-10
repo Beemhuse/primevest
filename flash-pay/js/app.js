@@ -77,15 +77,19 @@ async function updatePage() {
       }
     
       // Balances
-      if (investmentBalance) {
-        investmentBalance.textContent =
-          user.investmentBalance?.toFixed(2) || "0.00";
-      }
-      if (welfareBalance) {
-        welfareBalance.textContent =
-          user.welfareBalance?.toFixed(2) || "0.00";
-      }
-    } else {
+     if (investmentBalance) {
+  investmentBalance.textContent = `₦${(user.investmentBalance || 0).toLocaleString("en-NG", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+}
+
+if (welfareBalance) {
+  welfareBalance.textContent = `₦${(user.welfareBalance || 0).toLocaleString("en-NG", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+} } else {
       alert(data.message || "Session expired. Please login again.");
       window.location.href = "login.html";
     }

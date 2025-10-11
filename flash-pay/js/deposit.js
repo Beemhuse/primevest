@@ -40,63 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   msg.style.display = "none";
   msg.style.transition = "opacity 0.5s ease";
 });
-// document.getElementById("depositForm").addEventListener("submit", async function(e) {
-//   e.preventDefault();
 
-//   const depositBtn = document.getElementById("depositBtn");
-//   const originalBtnHTML = depositBtn.innerHTML;
-//   depositBtn.disabled = true;
-//   depositBtn.innerHTML = `<span>Submitting...</span>
-//                           <i class="fas fa-spinner fa-spin ml-2"></i>`;
-
-//   const formData = new FormData();
-//   formData.append("amount", document.getElementById("amount").value);
-//   formData.append("senderName", document.getElementById("senderName").value);
-//   formData.append("balanceType", document.getElementById("balanceType").value);
-//   formData.append("proofOfPayment", document.getElementById("proofFile").files[0]);
-
-//   try {
-//     const response = await fetch("https://prime-invest-server.onrender.com/api/deposits", {
-//       method: "POST",
-//       body: formData,
-//       credentials: "include"
-//     });
-
-//     const data = await response.json();
-
-//     if (response.ok) {
-//       showToast("✅ Deposit request submitted successfully!", "success");
-//       document.getElementById("depositForm").reset();
-//       setTimeout(() => {
-//         depositBtn.disabled = false;
-//         depositBtn.innerHTML = originalBtnHTML;
-//       }, 2000);
-//     } else {
-//       showToast(data.message || "❌ Failed to submit deposit.", "error");
-//       depositBtn.disabled = false;
-//       depositBtn.innerHTML = originalBtnHTML;
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     showToast("⚠️ Something went wrong. Try again later.", "error");
-//     depositBtn.disabled = false;
-//     depositBtn.innerHTML = originalBtnHTML;
-//   }
-// });
-// function showToast(message, type) {
-//   const toast = document.getElementById("toast");
-//   toast.textContent = message;
-//   toast.style.background = type === "success"
-//     ? "linear-gradient(135deg, #4CAF50, #2e7d32)"
-//     : "linear-gradient(135deg, #e53935, #b71c1c)";
-
-// toast.classList.add("show");
-
-// setTimeout(() => {
-//   toast.classList.remove("show");
-// }, 2000);
-
-// }
 document.getElementById("depositForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
@@ -201,3 +145,49 @@ function showToast(message, type) {
     toast.classList.remove("show");
   }, 2000);
 }
+function initLogoutButton() {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (!logoutBtn) return; 
+
+  logoutBtn.addEventListener("click", async () => {
+    const originalHTML = logoutBtn.innerHTML;
+
+    logoutBtn.disabled = true;
+    logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
+
+    try {
+      const res = await fetch("https://prime-invest-server.onrender.com/api/auth/logout", {
+        method: "POST",
+        credentials: "include", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('logged out successfully')
+        // Clear storage
+        localStorage.clear();
+        sessionStorage.clear();
+
+    
+        setTimeout(() => {
+          window.location.href = "./login.html";
+        }, 1500);
+      } else {
+        logoutBtn.disabled = false;
+        alert(data.message)
+        logoutBtn.innerHTML = originalHTML;
+      }
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert(err|| data.message)
+      logoutBtn.disabled = false;
+      logoutBtn.innerHTML = originalHTML;
+    }
+  });
+}
+
+initLogoutButton();

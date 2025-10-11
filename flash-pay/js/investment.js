@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  initLogoutButton();
   const container = document.getElementById("investment-container");
   if (!container) {
     console.error("Container with id 'investment-container' not found.");
@@ -157,3 +158,47 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadInvestmentPlans();
 });
 
+function initLogoutButton() {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (!logoutBtn) return; 
+
+  logoutBtn.addEventListener("click", async () => {
+    const originalHTML = logoutBtn.innerHTML;
+
+    logoutBtn.disabled = true;
+    logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
+
+    try {
+      const res = await fetch("https://prime-invest-server.onrender.com/api/auth/logout", {
+        method: "POST",
+        credentials: "include", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('logged out successfully')
+        // Clear storage
+        localStorage.clear();
+        sessionStorage.clear();
+
+    
+        setTimeout(() => {
+          window.location.href = "./login.html";
+        }, 1500);
+      } else {
+        logoutBtn.disabled = false;
+        alert(data.message)
+        logoutBtn.innerHTML = originalHTML;
+      }
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert(err|| data.message)
+      logoutBtn.disabled = false;
+      logoutBtn.innerHTML = originalHTML;
+    }
+  });
+}

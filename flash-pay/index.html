@@ -57,11 +57,76 @@
     opacity: 1;
     bottom: 50px;
   }
+  /* Fullscreen welcome overlay */
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%); /* dark background or your brand color */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 3s ease 2s forwards; /* fade after 2s */
+}
+
+/* Inner content */
+.welcome-content {
+  animation: popIn 1.2s ease;
+}
+
+/* Brand animation */
+.brand-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  animation: shimmerText 3s infinite linear;
+}
+
+/* Text shimmer effect */
+@keyframes shimmerText {
+  0% {
+    background: linear-gradient(90deg, #fff, #999, #fff);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* Pop-in animation */
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Fade out and hide */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
     </style>
   </head>
   <body class="flex items-center justify-center p-4">
+    <div id="welcome-screen">
+  <div class="welcome-content">
+    <h1 class="brand-name">PrimeVest</h1>
+  </div>
+</div>
     <div id="toast" class="toast">Signed in successfully 🎉</div>
-    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+    <div id="main-content" class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md hidden">
       <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">
         Create account
       </h2>
@@ -130,6 +195,15 @@
         >
       </p>
     </div>
+    <script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("welcome-screen").style.display = "none";
+      document.getElementById("main-content").classList.remove("hidden");
+    }, 3000); 
+  });
+</script>
+
     <script src="./js/signup.js"></script>
   </body>
 </html>

@@ -78,18 +78,18 @@ async function updatePage() {
   const greetingEl = document.getElementById("greeting-text");
   const usernameEl = document.getElementById("username");
   const avatarEl = document.querySelector(".header-avatar");
+  const investmentRechargeBalance = document.getElementById("investmentRechargeBalance");
+  const welfareRechargeBalance = document.getElementById("welfareRechargeBalance");
 
   try {
     const res = await fetch(
-      "https://prime-invest-server.onrender.com/api/users/me?_=" + Date.now(),
+      "https://prime-invest-server.onrender.com/api/users/me" ,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         credentials: "include",
-        cache: "no-store",
       }
     );
 
@@ -97,6 +97,11 @@ async function updatePage() {
 
     if (res.ok && data.success) {
       const user = data.data;
+      console.log(user)
+      welfareBalance.classList.remove("shimmer")
+      welfareRechargeBalance.classList.remove("shimmer")
+      investmentRechargeBalance.classList.remove("shimmer")
+      investmentBalance.classList.remove("shimmer")
       const referralCode = user.referralCode;
      if (document.getElementById("referralLink")){
         document.getElementById("referralLink").value = `https://primeevest.com?ref=${referralCode}`;
@@ -125,19 +130,35 @@ async function updatePage() {
       }
     
       // Balances
-     if (investmentBalance) {
-  investmentBalance.textContent = `₦${(user.investmentBalance || 0).toLocaleString("en-NG", {
+     if (investmentRechargeBalance) {
+  investmentRechargeBalance.textContent = `₦${(user.investmentRechargeBalance || 0).toLocaleString("en-NG", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
 }
 
+if (welfareRechargeBalance) {
+  welfareRechargeBalance.textContent = `₦${(user.welfareRechargeBalance || 0).toLocaleString("en-NG", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+
+} 
 if (welfareBalance) {
   welfareBalance.textContent = `₦${(user.welfareBalance || 0).toLocaleString("en-NG", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
-} } else {
+  
+}
+if (investmentBalance) {
+  investmentBalance.textContent = `₦${(user.investmentBalance || 0).toLocaleString("en-NG", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+  
+}
+} else {
       alert(data.message || "Session expired. Please login again.");
       window.location.href = "login.html";
     }

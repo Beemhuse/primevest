@@ -82,6 +82,30 @@
         height: 40px;
       }
     }
+    .shimmer {
+  display: inline-block;
+  height: 1em;
+  width: 80px; /* adjust width depending on expected balance length */
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 37%,
+    #f0f0f0 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
   </style>
 </head>
 
@@ -97,7 +121,7 @@
             <p class="font-semibold text-xl text-gray-700">
            My walfare  Balance
             </p>
-            <p id="welfare" class="text-3xl font-bold text-gray-800 mt-1">₦0.00</p>
+            <p id="welfare" class="text-3xl font-bold text-gray-800 mt-1 shimmer"></p>
           </div>
           <a href="./withdrawal.html">
             <button
@@ -108,15 +132,15 @@
           </a>
         </div>
 
-        <!-- <div class="flex items-center bg-teal-50 p-4 mt-5 rounded-lg border border-teal-100">
+        <div class="flex items-center bg-teal-50 p-4 mt-5 rounded-lg border border-teal-100">
           <div class="bg-teal-100 p-2 rounded-lg mr-3">
             <i class="fas fa-wallet text-teal-600 text-xl"></i>
           </div>
-          <p class="text-teal-800 font-medium">
-             Investment Recharge Balance:
-            <span class="font-bold text-lg">₦100000</span>
+          <p  class="text-teal-800 font-medium">
+             Welfare Recharge Balance:
+            <span class="font-bold text-lg shimmer" id="welfareRechargeBalance"></span>
           </p>
-        </div> -->
+        </div>
       </div>
       <div class="w-full rounded-xl flex flex-col justify-center p-6 bg-white shadow-lg card border border-gray-100">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -124,7 +148,7 @@
             <p class="font-semibold text-xl text-gray-700">
               My Investment Balance
             </p>
-            <p id="investment" class="text-3xl font-bold text-gray-800 mt-1">₦0.00</p>
+            <p id="investment" class="text-3xl font-bold text-gray-800 mt-1 shimmer"></p>
           </div>
           <a href="./withdrawal.html">
             <button
@@ -133,6 +157,15 @@
               <i class="fas fa-arrow-down ml-2"></i>
             </button>
           </a>
+        </div>
+         <div class="flex items-center bg-teal-50 p-4 mt-5 rounded-lg border border-teal-100">
+          <div class="bg-teal-100 p-2 rounded-lg mr-3">
+            <i class="fas fa-wallet text-teal-600 text-xl"></i>
+          </div>
+          <p class="text-teal-800 font-medium" >
+             Investment Recharge Balance:
+            <span id="investmentRechargeBalance" class="font-bold text-lg shimmer"></span>
+          </p>
         </div>
       </div>
     </div>

@@ -105,7 +105,7 @@ async function updatePage() {
       investmentBalance.classList.remove("shimmer")}
       const referralCode = user.referralCode;
      if (document.getElementById("referralLink")){
-        document.getElementById("referralLink").value = `https://primeevest.com?ref=${referralCode}`;
+        document.getElementById("referralLink").value = `https://primevest-sepia.vercel.app?ref=${referralCode}`;
      }
 
       const hour = new Date().getHours();

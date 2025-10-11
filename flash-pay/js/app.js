@@ -56,7 +56,7 @@ function initLogoutButton() {
     
         setTimeout(() => {
           window.location.href = "./login.html";
-        }, 1500);
+        }, 100);
       } else {
         logoutBtn.disabled = false;
         alert(data.message)
@@ -98,10 +98,11 @@ async function updatePage() {
     if (res.ok && data.success) {
       const user = data.data;
       console.log(user)
+      if(welfareBalance && investmentBalance && welfareRechargeBalance && investmentRechargeBalance){
       welfareBalance.classList.remove("shimmer")
       welfareRechargeBalance.classList.remove("shimmer")
       investmentRechargeBalance.classList.remove("shimmer")
-      investmentBalance.classList.remove("shimmer")
+      investmentBalance.classList.remove("shimmer")}
       const referralCode = user.referralCode;
      if (document.getElementById("referralLink")){
         document.getElementById("referralLink").value = `https://primeevest.com?ref=${referralCode}`;
@@ -165,7 +166,7 @@ if (investmentBalance) {
   } catch (error) {
     console.error("Error fetching user:", error);
     alert("Error fetching user info. Please login again.");
-    window.location.href = "login.html";
+    // window.location.href = "login.html";
   }
 }
 

@@ -76,6 +76,7 @@ document
           }, 100);
         }, 2000);
         button.textContent = "Sign Up"
+        localStorage.removeItem("referralCode");
       } else {
         button.textContent = "Sign Up"
         const toast = document.getElementById("toast");

@@ -97,7 +97,7 @@ async function updatePage() {
 
     if (res.ok && data.success) {
       const user = data.data;
-      console.log(user)
+      // console.log(user)
       if(welfareBalance && investmentBalance && welfareRechargeBalance && investmentRechargeBalance){
       welfareBalance.classList.remove("shimmer")
       welfareRechargeBalance.classList.remove("shimmer")

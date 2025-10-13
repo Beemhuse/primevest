@@ -10,6 +10,9 @@ const container = document.getElementById("withdrawals");
 const counts = { pending: 0, success: 0, failed: 0 };
 
 async function loadWithdrawals() {
+    container.innerHTML = `
+    <p class="text-gray-500 text-center py-6">Loading deposits...</p>
+  `;
   try {
     const res = await fetch(
       "https://prime-invest-server.onrender.com/api/withdrawals",
@@ -22,19 +25,18 @@ async function loadWithdrawals() {
 
     const data = await res.json();
 
-    if (!res.ok || !data.success) {
-      container.innerHTML =
-        "<p class='text-center text-gray-500'>No withdrawals found</p>";
-      return;
-    }
-
     const {
       withdrawals,
       pendingWithdrawals,
       successfulWithdrawals,
       failedWithdrawals,
     } = data.data;
-
+      if (withdrawals.length === 0) {
+      container.innerHTML = `
+        <p class="text-gray-500 text-center py-6">You have not made any withdrawals yet.</p>
+      `;
+      return;
+      }
     // update counts
     document.getElementById("pendingCount").textContent =
       pendingWithdrawals || 0;

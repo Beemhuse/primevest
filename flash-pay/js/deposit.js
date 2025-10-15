@@ -83,7 +83,7 @@ document.getElementById("depositForm").addEventListener("submit", async function
 
     // ✅ Use XMLHttpRequest for progress tracking
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://prime-invest-server.onrender.com/api/deposits");
+    xhr.open("POST", "https://api.primeevest.com/deposits");
     xhr.withCredentials = true;
 
     // Progress bar simulation (update button text)
@@ -156,7 +156,7 @@ function initLogoutButton() {
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
 
     try {
-      const res = await fetch("https://prime-invest-server.onrender.com/api/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/auth/logout", {
         method: "POST",
         credentials: "include", 
         headers: {

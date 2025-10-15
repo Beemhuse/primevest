@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const res = await fetch(
-      "https://prime-invest-server.onrender.com/api/users/referrals",
+      "https://api.primeevest.com/users/referrals",
       {
         method: "GET",
         headers: {

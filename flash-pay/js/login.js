@@ -24,7 +24,7 @@ document
     button.textContent = "logging in ...";
 
     const apiEndpoint =
-      "https://prime-invest-server.onrender.com/api/auth/login";
+      "https://api.primeevest.com/auth/login";
 
     try {
       const response = await fetch(apiEndpoint, {

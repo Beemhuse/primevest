@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadInvestmentPlans() {
     try {
       const res = await fetch(
-        "https://prime-invest-server.onrender.com/api/plans?planType=investment&status=active&sortBy=oldest",
+        "https://api.primeevest.com/plans?planType=investment&status=active&sortBy=oldest",
         {
           method: "GET",
           headers: {
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
           const res = await fetch(
-            "https://prime-invest-server.onrender.com/api/plans/buy",
+            "https://api.primeevest.com/plans/buy",
             {
               method: "POST",
               headers: {
@@ -169,7 +169,7 @@ function initLogoutButton() {
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
 
     try {
-      const res = await fetch("https://prime-invest-server.onrender.com/api/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/auth/logout", {
         method: "POST",
         credentials: "include", 
         headers: {

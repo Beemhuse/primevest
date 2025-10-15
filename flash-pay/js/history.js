@@ -15,7 +15,7 @@ async function loadWithdrawals() {
   `;
   try {
     const res = await fetch(
-      "https://prime-invest-server.onrender.com/api/withdrawals",
+      "https://api.primeevest.com/withdrawals",
       {
         method: "GET",
         headers: { Accept: "application/json" },
@@ -88,7 +88,7 @@ async function loadWithdrawals() {
   }
 }
 
-const API_BASE_URL = "https://prime-invest-server.onrender.com/api";
+const API_BASE_URL = "https://api.primeevest.com";
 const depositContainer = document.getElementById("depositHistoryContainer");
 
 // === FETCH AND DISPLAY USER DEPOSITS ===
@@ -203,7 +203,7 @@ function initLogoutButton() {
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
 
     try {
-      const res = await fetch("https://prime-invest-server.onrender.com/api/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/auth/logout", {
         method: "POST",
         credentials: "include", 
         headers: {

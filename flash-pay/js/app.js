@@ -37,7 +37,7 @@ function initLogoutButton() {
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
 
     try {
-      const res = await fetch("https://prime-invest-server.onrender.com/api/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/auth/logout", {
         method: "POST",
         credentials: "include", 
         headers: {
@@ -83,7 +83,7 @@ async function updatePage() {
 
   try {
     const res = await fetch(
-      "https://prime-invest-server.onrender.com/api/users/me" ,
+      "https://api.primeevest.com/users/me" ,
       {
         method: "GET",
         headers: {
@@ -105,7 +105,7 @@ async function updatePage() {
       investmentBalance.classList.remove("shimmer")}
       const referralCode = user.referralCode;
      if (document.getElementById("referralLink")){
-        document.getElementById("referralLink").value = `https://primevest-sepia.vercel.app?ref=${referralCode}`;
+        document.getElementById("referralLink").value = `https://primeevest.com?ref=${referralCode}`;
      }
 
       const hour = new Date().getHours();

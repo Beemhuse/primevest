@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (userAccountName && userAccountNumber && userBankName) {
       try {
         const response = await fetch(
-          "https://api.primeevest.com/users/bank-details",
+          "https://api.primeevest.com/api/users/bank-details",
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
       try {
         const response = await fetch(
-          "https://api.primeevest.com/users/bank",
+          "https://api.primeevest.com/api/users/bank",
           {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
@@ -117,7 +117,7 @@ function initLogoutButton() {
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Logging out...`;
 
     try {
-      const res = await fetch("https://api.primeevest.com/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/api/auth/logout", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

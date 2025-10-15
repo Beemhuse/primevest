@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
 
     try {
-      const res = await fetch("https://api.primeevest.com/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/api/auth/logout", {
         method: "POST",
         credentials: "include", 
         headers: {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function loadWelfarePlans() {
     try {
       const res = await fetch(
-        "https://api.primeevest.com/plans?planType=welfare&status=active&sortBy=oldest",
+        "https://api.primeevest.com/api/plans?planType=welfare&status=active&sortBy=oldest",
         {
           method: "GET",
           headers: {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
           const res = await fetch(
-            `https://api.primeevest.com/plans/buy`,
+            `https://api.primeevest.com/api/plans/buy`,
             {
               method: "POST",
               headers: {

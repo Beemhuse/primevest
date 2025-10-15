@@ -28,7 +28,7 @@ document
 
     try {
       const res = await fetch(
-        "https://api.primeevest.com/withdrawals",
+        "https://api.primeevest.com/api/withdrawals",
         {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ document
     logoutBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>Logging out...`;
 
     try {
-      const res = await fetch("https://api.primeevest.com/auth/logout", {
+      const res = await fetch("https://api.primeevest.com/api/auth/logout", {
         method: "POST",
         credentials: "include", 
         headers: {

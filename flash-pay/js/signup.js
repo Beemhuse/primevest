@@ -76,10 +76,12 @@ document
           }, 100);
         }, 2000);
         button.textContent = "Sign Up"
+        button.disabled = false;
         localStorage.removeItem("referralCode");
       } else {
         button.textContent = "Sign Up"
         const toast = document.getElementById("toast");
+        button.disabled = false;
         toast.textContent = data.message || "An error occurred during log-in.";
         toast.style.background = "linear-gradient(135deg, #e53935, #b71c1c)";
         toast.classList.add("show");
@@ -93,6 +95,8 @@ document
       toast.textContent = "Something went wrong!";
       toast.style.background = "linear-gradient(135deg, #e53935, #b71c1c)";
       toast.classList.add("show");
+      button.disabled = false;
+      button.textContent = "Sign Up"
 
       setTimeout(() => {
         toast.classList.remove("show");

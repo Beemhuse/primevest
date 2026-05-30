@@ -161,12 +161,12 @@ if (investmentBalance) {
 }
 } else {
       alert(data.message || "Session expired. Please login again.");
-      window.location.href = "login.html";
+      // window.location.href = "login.html";
     }
   } catch (error) {
     console.error("Error fetching user:", error);
     alert("Error fetching user info. Please login again.");
-    window.location.href = "login.html";
+    // window.location.href = "login.html";
   }
 }
 
